@@ -5,7 +5,6 @@
   "engines": {
     "node": ">=20.9.0"
   },
->>>>>>> fb9a41d (Fix Node version for Dokploy Nixpacks build)
   "scripts": {
     "dev": "next dev",
     "build": "next build",
