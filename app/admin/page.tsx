@@ -1,112 +1,207 @@
-"use client";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { verifyAdminSession } from "@/lib/admin-auth";
 
-import { useState } from "react";
+function formatDateTime(date: Date | string) {
+  return new Date(date).toLocaleString([], {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
 
-export default function ReservePage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [guests, setGuests] = useState(1);
-  const [startTime, setStartTime] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+function getStatusClasses(status: string) {
+  switch (status) {
+    case "confirmed":
+      return "bg-emerald-500/15 text-emerald-300 border border-emerald-500/20";
+    case "cancelled":
+      return "bg-red-500/15 text-red-300 border border-red-500/20";
+    default:
+      return "bg-amber-500/15 text-amber-300 border border-amber-500/20";
+  }
+}
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
+export default async function AdminPage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("admin_auth")?.value;
 
-    try {
-      const res = await fetch("/api/reservations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          guests,
-          startTime,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setMessage(data.message || "Something went wrong");
-      } else {
-        setMessage("Reservation successful! Confirmation email sent 👑");
-        setName("");
-        setEmail("");
-        setGuests(1);
-        setStartTime("");
-      }
-    } catch (error) {
-      setMessage("Network error. Please try again.");
-    }
-
-    setLoading(false);
+  if (!token) {
+    redirect("/admin/login");
   }
 
+  const session = await verifyAdminSession(token);
+
+  if (!session) {
+    redirect("/admin/login");
+  }
+
+  const reservations = await prisma.reservation.findMany({
+    include: { table: true },
+    orderBy: { startTime: "asc" },
+  });
+
+  const today = new Date();
+  const todayString = today.toDateString();
+
+  const todaysReservations = reservations.filter(
+    (r) => new Date(r.startTime).toDateString() === todayString
+  );
+
+  const confirmedCount = reservations.filter(
+    (r) => r.status === "confirmed"
+  ).length;
+
+  const cancelledCount = reservations.filter(
+    (r) => r.status === "cancelled"
+  ).length;
+
+  const pendingCount = reservations.filter(
+    (r) => r.status !== "confirmed" && r.status !== "cancelled"
+  ).length;
+
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
-      <div className="max-w-xl w-full bg-[#111] p-10 rounded-xl shadow-2xl border border-yellow-600">
-        <h1 className="text-4xl mb-6 text-center text-yellow-500">
-          Reserve a Table
-        </h1>
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.14),_transparent_30%),linear-gradient(to_bottom,_#050505,_#0d0d0d,_#111111)] text-white px-6 py-8 md:px-10">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.35em] text-[#D4AF37] mb-2">
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full p-3 bg-black border border-gray-700 rounded"
-          />
+            </p>
+            <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">
+              Reservations Dashboard
+            </h1>
+            <p className="mt-3 max-w-2xl text-sm md:text-base text-white/60">
+              Monitor bookings, confirm guest arrivals, and manage the dining
+              schedule from one refined control center.
+            </p>
+          </div>
 
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full p-3 bg-black border border-gray-700 rounded"
-          />
+          <form action="/api/admin-logout" method="POST">
+            <button className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10">
+              Logout
+            </button>
+          </form>
+        </header>
 
-          <input
-            type="number"
-            min="1"
-            max="12"
-            placeholder="Number of Guests"
-            value={guests}
-            onChange={(e) => setGuests(Number(e.target.value))}
-            required
-            className="w-full p-3 bg-black border border-gray-700 rounded"
-          />
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+            <p className="text-sm text-white/55">Today&apos;s Reservations</p>
+            <h2 className="mt-3 text-4xl font-semibold text-[#D4AF37]">
+              {todaysReservations.length}
+            </h2>
+          </div>
 
-          <input
-            type="datetime-local"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            required
-            className="w-full p-3 bg-black border border-gray-700 rounded"
-          />
+          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+            <p className="text-sm text-white/55">Confirmed</p>
+            <h2 className="mt-3 text-4xl font-semibold">{confirmedCount}</h2>
+          </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-yellow-600 hover:bg-yellow-500 transition p-3 rounded text-black font-bold"
-          >
-            {loading ? "Booking..." : "Book Table"}
-          </button>
-        </form>
+          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+            <p className="text-sm text-white/55">Pending</p>
+            <h2 className="mt-3 text-4xl font-semibold">{pendingCount}</h2>
+          </div>
 
-        {message && (
-          <p className="mt-6 text-center text-sm text-yellow-400">
-            {message}
-          </p>
-        )}
+          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+            <p className="text-sm text-white/55">Cancelled</p>
+            <h2 className="mt-3 text-4xl font-semibold">{cancelledCount}</h2>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
+          <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+            <div>
+              <h2 className="text-xl font-semibold">All Reservations</h2>
+              <p className="text-sm text-white/50 mt-1">
+                A complete overview of current guest bookings.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[900px]">
+              <thead className="bg-white/5">
+                <tr className="text-left text-sm text-white/55">
+                  <th className="px-6 py-4 font-medium">Guest</th>
+                  <th className="px-6 py-4 font-medium">Guests</th>
+                  <th className="px-6 py-4 font-medium">Table</th>
+                  <th className="px-6 py-4 font-medium">Date & Time</th>
+                  <th className="px-6 py-4 font-medium">Status</th>
+                  <th className="px-6 py-4 font-medium">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {reservations.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={6}
+                      className="px-6 py-16 text-center text-white/45"
+                    >
+                      No reservations found yet.
+                    </td>
+                  </tr>
+                ) : (
+                  reservations.map((r) => (
+                    <tr
+                      key={r.id}
+                      className="border-t border-white/10 hover:bg-white/[0.03] transition"
+                    >
+                      <td className="px-6 py-5">
+                        <div className="space-y-1">
+                          <p className="font-medium text-white">{r.name}</p>
+                          <p className="text-sm text-white/45">{r.email}</p>
+                        </div>
+                      </td>
+
+                      <td className="px-6 py-5 text-white/80">{r.guests}</td>
+
+                      <td className="px-6 py-5 text-white/80">
+                        Table {r.table.tableNumber}
+                      </td>
+
+                      <td className="px-6 py-5 text-white/70">
+                        {formatDateTime(r.startTime)}
+                      </td>
+
+                      <td className="px-6 py-5">
+                        <span
+                          className={`inline-flex rounded-full px-3 py-1 text-xs font-medium capitalize ${getStatusClasses(
+                            r.status
+                          )}`}
+                        >
+                          {r.status}
+                        </span>
+                      </td>
+
+                      <td className="px-6 py-5">
+                        <div className="flex flex-wrap gap-2">
+                          <form
+                            action={`/api/reservations/${r.id}/confirm`}
+                            method="POST"
+                          >
+                            <button className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:brightness-110">
+                              Confirm
+                            </button>
+                          </form>
+
+                          <form
+                            action={`/api/reservations/${r.id}/cancel`}
+                            method="POST"
+                          >
+                            <button className="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:brightness-110">
+                              Cancel
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }

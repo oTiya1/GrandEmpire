@@ -30,7 +30,7 @@ export default function ReservePage() {
     });
 
     if (res.ok) {
-      setMessage("Reservation successful. Confirmation email sent.");
+      setMessage("Reservation Successful.");
       e.target.reset();
     } else {
       setMessage("Something went wrong. Please try again.");
