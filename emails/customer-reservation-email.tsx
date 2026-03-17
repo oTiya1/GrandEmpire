@@ -75,9 +75,9 @@ Name: ${name}`
 </tr>
 
             <Text style={brand}>GRAND EMPIRE</Text>
-            <Heading style={heroTitle}>Your Reservation is Confirmed</Heading>
+            <Heading style={heroTitle}>Reservation Confirmed</Heading>
             <Text style={heroSubtitle}>
-              Thank you for choosing Grand Empire. We look forward to welcoming
+              Thank you for choosing Grand Empire, your reservation is confirmed. We look forward to welcoming
               you for an exceptional dining experience.
             </Text>
           </Section>
