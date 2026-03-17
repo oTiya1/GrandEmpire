@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={`${headingFont.variable} ${bodyFont.variable} bg-black text-white`}>
         <Navbar />
 
-<main className="pt-20 md:pt-20">
+<main className="pt-24 md:pt-24">
   {children}
 </main>
       </body>
