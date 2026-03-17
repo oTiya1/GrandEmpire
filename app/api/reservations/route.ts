@@ -5,7 +5,15 @@ import { prisma } from "@/lib/prisma";
 import CustomerReservationEmail from "@/emails/customer-reservation-email";
 import AdminReservationEmail from "@/emails/admin-reservation-email";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is missing in environment variables");
+  }
+
+  return new Resend(apiKey);
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -136,6 +144,8 @@ export async function POST(req: NextRequest) {
         reservationId: reservation.id,
       })
     );
+
+    const resend = getResendClient();
 
     const customerResult = await resend.emails.send({
       from: fromEmail,
