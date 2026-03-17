@@ -1,3 +1,37 @@
+# Grand Empire Restaurant Reservation System
+
+A modern full-stack reservation management system built with **Next.js, Prisma, and PostgreSQL**.
+
+## Features
+
+- Secure admin dashboard
+- Table reservation system
+- Reservation status management
+- Admin authentication with JWT sessions
+- Confirm / cancel reservations
+- Responsive premium UI
+
+## Tech Stack
+
+- Next.js (App Router)
+- Prisma ORM
+- PostgreSQL
+- TailwindCSS
+- JWT authentication
+
+## Screenshots
+
+Admin Dashboard
+
+![dashboard](./screenshots/admin-dashboard.png)
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/oTiya1/grand-empire.git
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { render } from "@react-email/render";
 import { prisma } from "@/lib/prisma";
+import CustomerReservationEmail from "@/emails/customer-reservation-email";
+import AdminReservationEmail from "@/emails/admin-reservation-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    console.log("Incoming reservation body:", body);
-
     const { name, email, phone, guests, date, time } = body;
 
     if (!name || !email || !phone || !guests || !date || !time) {
@@ -38,7 +39,6 @@ export async function POST(req: NextRequest) {
 
     const endTime = new Date(startTime.getTime() + 2 * 60 * 60 * 1000);
 
-    // Find tables that can fit the guest count
     const candidateTables = await prisma.table.findMany({
       where: {
         seats: {
@@ -57,14 +57,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Find the first table that is not already reserved in the selected time slot
     let availableTable = null;
 
     for (const table of candidateTables) {
       const conflictingReservation = await prisma.reservation.findFirst({
         where: {
           tableId: table.id,
-          status: "confirmed",
+          status: {
+            in: ["pending", "confirmed"],
+          },
           AND: [
             {
               startTime: {
@@ -105,72 +106,65 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    console.log("Reservation created:", reservation.id);
-
     const fromEmail =
       process.env.RESEND_FROM_EMAIL ||
-      "Grand Empire <reservations@grandempieruk.com>";
+      "Grand Empire <reservations@grandempireuk.com>";
 
     const restaurantNotificationEmail =
       process.env.RESTAURANT_NOTIFICATION_EMAIL ||
       "grandempieruk@gmail.com";
 
-    try {
-      await resend.emails.send({
-        from: fromEmail,
-        to: email,
-        subject: "Your Reservation at Grand Empire 👑",
-        html: `
-          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-            <h2>Reservation Confirmed</h2>
-            <p>Hello ${name},</p>
-            <p>Thank you for choosing <strong>Grand Empire</strong>. Your reservation has been received successfully.</p>
+    const customerHtml = await render(
+      CustomerReservationEmail({
+        name,
+        date,
+        time,
+        guests: guestCount,
+        tableNumber: availableTable.tableNumber,
+      })
+    );
 
-            <h3>Reservation Details</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Guests:</strong> ${guestCount}</p>
-            <p><strong>Date:</strong> ${date}</p>
-            <p><strong>Time:</strong> ${time}</p>
-            <p><strong>Table:</strong> ${availableTable.tableNumber}</p>
-            <p><strong>Duration:</strong> 2 hours</p>
+    const adminHtml = await render(
+      AdminReservationEmail({
+        name,
+        email,
+        phone,
+        date,
+        time,
+        guests: guestCount,
+        tableNumber: availableTable.tableNumber,
+        reservationId: reservation.id,
+      })
+    );
 
-            <br />
-            <p>We look forward to welcoming you.</p>
-            <p><strong>Grand Empire</strong><br />108–110 Rushey Green, London</p>
-          </div>
-        `,
-      });
+    const customerResult = await resend.emails.send({
+      from: fromEmail,
+      to: [email],
+      subject: "Your Reservation at Grand Empire 👑",
+      html: customerHtml,
+    });
 
-      await resend.emails.send({
-        from: fromEmail,
-        to: restaurantNotificationEmail,
-        subject: "New Reservation Received",
-        html: `
-          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-            <h2>New Reservation Received</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Guests:</strong> ${guestCount}</p>
-            <p><strong>Date:</strong> ${date}</p>
-            <p><strong>Time:</strong> ${time}</p>
-            <p><strong>Table:</strong> ${availableTable.tableNumber}</p>
-            <p><strong>Reservation ID:</strong> ${reservation.id}</p>
-          </div>
-        `,
-      });
+    const adminResult = await resend.emails.send({
+      from: fromEmail,
+      to: [restaurantNotificationEmail],
+      subject: "New Reservation Received",
+      html: adminHtml,
+    });
 
-      console.log("Customer and restaurant emails sent successfully");
-    } catch (emailError) {
-      console.error("Email sending error:", emailError);
+    if (customerResult.error) {
+      console.error("Customer email failed:", customerResult.error);
+    }
+
+    if (adminResult.error) {
+      console.error("Admin email failed:", adminResult.error);
     }
 
     return NextResponse.json(
       {
         message: "Reservation created successfully",
         reservation,
+        customerEmailSent: !customerResult.error,
+        adminEmailSent: !adminResult.error,
       },
       { status: 201 }
     );

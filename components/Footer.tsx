@@ -23,6 +23,8 @@ export default function Footer() {
             108–110 Rushey Green
             <br />
             London, SE6 4HW
+            <br />
+            +447413491088
           </p>
         </div>
 
