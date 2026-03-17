@@ -45,18 +45,31 @@ export default function AdminReservationEmail({
           <Section style={header}>
 <tr>
   <td style={{ padding: "24px 0", textAlign: "center" }}>
+    
     <img
       src="https://grandempireuk.com/logo.png"
       alt="Grand Empire"
       width="140"
       style={{
         display: "block",
-        margin: "0 auto",
+        margin: "0 auto 16px auto",
         border: 0,
-        outline: "none",
-        textDecoration: "none",
       }}
     />
+
+    <p
+      style={{
+        margin: 0,
+        textAlign: "center",
+        fontSize: "20px",
+        fontWeight: 600,
+        color: "#111111",
+        lineHeight: "1.4",
+      }}
+    >
+      New Reservation Received
+    </p>
+
   </td>
 </tr>
 

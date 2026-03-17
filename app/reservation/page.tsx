@@ -158,14 +158,11 @@ export default function ReservePage() {
 
             </div>
 
-             <p className="mt-4 text-sm text-white/60">
-              Online reservations are available for up to 6 guests per table.
-            </p>
-
-            <p className="mt-2 text-sm text-yellow-500">
-              For bookings of more than 6 guests, please contact the restaurant
-              directly.
-            </p>
+             <p className="mt-6 max-w-xl mx-auto text-center text-sm md:text-base leading-relaxed text-gray-300">
+  Online reservations are available for up to <span className="text-yellow-500 font-medium">6 guests</span> per table.
+  <br />
+  For larger parties, please contact the restaurant directly.
+</p>
 
             <button
               type="submit"
