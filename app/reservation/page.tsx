@@ -33,7 +33,7 @@ export default function ReservePage() {
       setMessage("Reservation Successful.");
       e.target.reset();
     } else {
-      setMessage("Something went wrong. Please try again.");
+      setMessage("Something went wrong, Please try again.");
     }
 
     setLoading(false);
@@ -43,7 +43,7 @@ export default function ReservePage() {
     <main className="bg-black text-white">
 
       {/* HERO */}
-      <section className="relative overflow-hidden px-6 pt-32 pb-24">
+      <section className="relative overflow-hidden px-6 pt-24 pb-24 md:pt-28">
 
         <div className="absolute inset-0">
           <div className="grid h-full grid-cols-2 md:grid-cols-4">
@@ -88,7 +88,7 @@ export default function ReservePage() {
           </p>
 
           <h1 className="mt-4 text-5xl md:text-6xl font-semibold">
-            Book your table
+            Book A Table
           </h1>
 
           <p className="mt-6 text-lg text-gray-300">
@@ -157,6 +157,15 @@ export default function ReservePage() {
               />
 
             </div>
+
+             <p className="mt-4 text-sm text-white/60">
+              Online reservations are available for up to 6 guests per table.
+            </p>
+
+            <p className="mt-2 text-sm text-yellow-500">
+              For bookings of more than 6 guests, please contact the restaurant
+              directly.
+            </p>
 
             <button
               type="submit"

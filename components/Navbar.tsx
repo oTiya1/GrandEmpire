@@ -82,8 +82,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      <div aria-hidden className="h-16 md:h-20" />
-
       <AnimatePresence>
         {menuOpen && (
           <motion.aside
