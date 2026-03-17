@@ -34,26 +34,27 @@ export default function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-black/88 backdrop-blur-xl border-b border-yellow-600/20"
-            : "bg-transparent"
+            ? "border-b border-yellow-600/20 bg-black/88 backdrop-blur-xl"
+            : "bg-black/55 backdrop-blur-md"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="flex h-20 items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="flex h-16 items-center justify-between md:h-20">
+            <Link href="/" className="flex min-w-0 items-center gap-2.5 md:gap-3">
               <Image
                 src="/logo6.png"
                 alt="Grand Empire"
-                width={42}
-                height={42}
-                className="object-contain"
+                width={44}
+                height={44}
+                priority
+                className="h-10 w-10 object-contain md:h-11 md:w-11"
               />
-              <span className="text-sm font-semibold tracking-[0.2em] text-yellow-500 md:text-base">
+              <span className="truncate text-[11px] font-semibold tracking-[0.18em] text-yellow-500 sm:text-xs md:text-base md:tracking-[0.2em]">
                 GRAND EMPIRE
               </span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.35em] text-gray-200">
+            <nav className="hidden items-center gap-8 text-xs uppercase tracking-[0.3em] text-gray-200 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -69,7 +70,7 @@ export default function Navbar() {
               type="button"
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
-              className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500 backdrop-blur-md"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500 backdrop-blur-md md:hidden"
             >
               <span className="flex flex-col gap-1.5">
                 <span className="block h-0.5 w-5 bg-current" />
@@ -80,6 +81,8 @@ export default function Navbar() {
           </div>
         </div>
       </header>
+
+      <div aria-hidden className="h-16 md:h-20" />
 
       <AnimatePresence>
         {menuOpen && (
@@ -93,17 +96,17 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <Link
                   href="/"
-                  className="flex items-center gap-3"
+                  className="flex min-w-0 items-center gap-2.5"
                   onClick={() => setMenuOpen(false)}
                 >
                   <Image
                     src="/logo6.png"
                     alt="Grand Empire"
-                    width={42}
-                    height={42}
-                    className="object-contain"
+                    width={44}
+                    height={44}
+                    className="h-10 w-10 object-contain"
                   />
-                  <span className="text-sm font-semibold tracking-[0.2em] text-yellow-500">
+                  <span className="truncate text-xs font-semibold tracking-[0.18em] text-yellow-500">
                     GRAND EMPIRE
                   </span>
                 </Link>
@@ -112,7 +115,7 @@ export default function Navbar() {
                   type="button"
                   aria-label="Close menu"
                   onClick={() => setMenuOpen(false)}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500"
                 >
                   ✕
                 </button>
@@ -129,7 +132,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="text-3xl font-light uppercase tracking-[0.25em] text-white transition hover:text-yellow-500"
+                      className="text-3xl font-light uppercase tracking-[0.22em] text-white transition hover:text-yellow-500"
                     >
                       {link.label}
                     </Link>

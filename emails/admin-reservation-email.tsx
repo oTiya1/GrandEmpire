@@ -43,13 +43,16 @@ export default function AdminReservationEmail({
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
-            <Img
-              src="https://grandempireuk.com/logo.png"
-              alt="Grand Empire"
-              width="140"
-              height="40"
-              style={logo}
-            />
+          <Img
+  src="https://grandempireuk.com/logo.png"
+  alt="Grand Empire"
+  width={180}
+  style={{
+    display: "block",
+    width: "180px",
+    height: "auto",
+  }}
+/>
 
             <Text style={brand}>GRAND EMPIRE</Text>
             <Heading style={title}>New Reservation Received</Heading>
