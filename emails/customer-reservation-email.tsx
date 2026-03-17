@@ -68,7 +68,7 @@ Name: ${name}`
         lineHeight: "1.4",
       }}
     >
-      Reservation Confirmation
+
     </p>
 
   </td>

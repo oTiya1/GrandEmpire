@@ -67,17 +67,16 @@ export default function AdminReservationEmail({
         lineHeight: "1.4",
       }}
     >
-      New Reservation Received
+    
     </p>
-
-  </td>
-</tr>
-
-            <Text style={brand}>GRAND EMPIRE</Text>
+ <Text style={brand}>GRAND EMPIRE</Text>
             <Heading style={title}>New Reservation Received</Heading>
             <Text style={subtitle}>
               A new booking has been created.
             </Text>
+  </td>
+</tr>
+        
           </Section>
 
           <Section style={content}>
