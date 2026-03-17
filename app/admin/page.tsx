@@ -75,12 +75,6 @@ export default async function AdminPage() {
               schedule from one refined control center.
             </p>
           </div>
-
-          <form action="/api/admin-logout" method="POST">
-            <button className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10">
-              Logout
-            </button>
-          </form>
         </header>
 
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

@@ -13,30 +13,31 @@ export default function Home() {
     <main className="bg-black text-white">
 
       {/* HERO */}
-<section className="relative min-h-screen overflow-hidden">
+{/* HERO */}
+<section className="relative min-h-screen overflow-hidden pt-28 md:pt-32 lg:pt-36">
   <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  tabIndex={-1}
-  aria-hidden="true"
-  className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
->
+    autoPlay
+    muted
+    loop
+    playsInline
+    tabIndex={-1}
+    aria-hidden="true"
+    className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
+  >
     <source src="/hero-video.mp4" type="video/mp4" />
   </video>
 
   <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/60 pointer-events-none" />
 
-  <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6">
+  <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-center px-6">
     <div className="grid w-full items-center gap-12 lg:grid-cols-2">
       {/* HERO TEXT */}
-      <div className="hero-animate relative z-30 pointer-events-auto text-center lg:text-left">
-        <p className="mb-4 text-xs uppercase tracking-[0.4em] text-yellow-500 md:text-sm">
+      <div className="hero-animate relative z-30 pointer-events-auto flex flex-col items-center text-center lg:items-start lg:text-left">
+        <p className="mb-5 text-xs uppercase tracking-[0.35em] text-yellow-500 md:text-sm">
           Luxury Dining • South London
         </p>
 
-        <h1 className="text-5xl md:text-7xl font-light leading-tight text-yellow-500">
+        <h1 className="text-5xl font-light leading-[1.05] text-yellow-500 md:text-7xl">
           Fine Dining
           <span className="block text-white">Reimagined</span>
         </h1>
@@ -83,7 +84,6 @@ export default function Home() {
     </div>
   </div>
 </section>
-
 
       {/* EDITORIAL STORY SECTION */}
       <EditorialSection
