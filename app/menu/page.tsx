@@ -220,14 +220,14 @@ export default function MenuPage() {
                     key={name}
                     className="rounded-3xl border border-yellow-600/15 bg-[#111]/95 p-7 transition duration-300 hover:-translate-y-1 hover:border-yellow-500/35 hover:shadow-[0_0_30px_rgba(234,179,8,0.08)]"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <h3 className="text-2xl font-medium text-yellow-500">
-                        {name}
-                      </h3>
-                      <span className="shrink-0 rounded-full border border-yellow-600/25 px-4 py-1 text-sm font-semibold text-white">
-                        {price}
-                      </span>
-                    </div>
+                  <div className="flex items-start justify-between gap-4">
+  <h3 className="text-2xl font-medium text-yellow-500">
+    {name}
+  </h3>
+  <span className="shrink-0 rounded-full border border-yellow-600/25 px-4 py-1 text-sm font-semibold text-white">
+    {price}
+  </span>
+</div>
                   </div>
                 ))}
               </div>

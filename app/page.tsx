@@ -63,7 +63,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-20 flex flex-col items-center gap-3 rounded-2xl bg-black/35 px-5 py-4 text-sm text-gray-200 backdrop-blur-sm sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
+        <div className="mt-12 flex flex-col items-center gap-2 rounded-2xl bg-black/35 px-5 py-4 text-sm text-gray-200 backdrop-blur-sm sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
           <span>Open Daily: 8:00 AM – 3:00 AM</span>
           <span>108–110 Rushey Green, London</span>
         </div>
