@@ -14,7 +14,7 @@ export default function Home() {
 
       {/* HERO */}
 {/* HERO */}
-<section className="relative min-h-screen overflow-hidden pt-28 md:pt-32 lg:pt-36">
+<section className="relative min-h-screen overflow-hidden pt-20 md:pt-24 lg:pt-38">
   <video
     autoPlay
     muted
@@ -26,8 +26,6 @@ export default function Home() {
   >
     <source src="/hero-video.mp4" type="video/mp4" />
   </video>
-
-  <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/60 pointer-events-none" />
 
   <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-center px-6">
     <div className="grid w-full items-center gap-12 lg:grid-cols-2">
@@ -188,7 +186,7 @@ export default function Home() {
               Reservations
             </p>
             <p className="mt-3 text-lg leading-8 text-gray-300">
-              Reserve your table online for a smooth and elegant dining experience.
+              Reserve your table online for a smooth and elegant dining experience or contact us directly on WhatsApp.
             </p>
           </div>
 
@@ -197,8 +195,16 @@ export default function Home() {
               href="/reservation"
               className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
             >
-              Book Your Table
+              Book A Table
             </Link>
+            <a
+    href="https://wa.me/447000000000?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-green-500 px-6 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] hover:bg-green-600"
+  >
+    WhatsApp Us
+  </a>
           </div>
         </div>
       </div>
