@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -13,9 +14,15 @@ const bodyFont = Inter({
   variable: "--font-body",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Grand Empire | Luxury Dining in London",
-  description: "Experience fine dining at Grand Empire, 108–110 Rushey Green, London.",
+  description:
+    "Experience fine dining at Grand Empire, 108–110 Rushey Green, London.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -25,12 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${headingFont.variable} ${bodyFont.variable} bg-black text-white`}>
+      <body
+        className={`${headingFont.variable} ${bodyFont.variable} bg-black text-white`}
+      >
         <Navbar />
-
-<main className="flex min-h-screen flex-col items-center justify-center gap-12 px-4 py-8">
-  {children}
-</main>
+        {children}
       </body>
     </html>
   );
