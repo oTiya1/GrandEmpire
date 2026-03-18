@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={`${headingFont.variable} ${bodyFont.variable} bg-black text-white`}>
         <Navbar />
 
-<main className="pt-24 md:pt-28">
+<main className="flex min-h-screen flex-col items-center justify-center gap-12 px-4 py-8">
   {children}
 </main>
       </body>

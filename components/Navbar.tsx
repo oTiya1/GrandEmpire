@@ -35,26 +35,26 @@ export default function Navbar() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled
             ? "border-b border-yellow-600/20 bg-black/88 backdrop-blur-xl"
-            : "bg-black/55 backdrop-blur-md"
+            : "bg-black/45 backdrop-blur-md"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="flex h-16 items-center justify-between md:h-20">
-            <Link href="/" className="flex min-w-0 items-center gap-2.5 md:gap-3">
+          <div className="flex h-14 items-center justify-between md:h-16">
+            <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
               <Image
                 src="/logo6.png"
                 alt="Grand Empire"
-                width={44}
-                height={44}
+                width={40}
+                height={40}
                 priority
-                className="h-10 w-10 object-contain md:h-11 md:w-11"
+                className="h-9 w-9 object-contain md:h-10 md:w-10"
               />
-              <span className="truncate text-[11px] font-semibold tracking-[0.18em] text-yellow-500 sm:text-xs md:text-base md:tracking-[0.2em]">
+              <span className="truncate text-[10px] font-semibold tracking-[0.16em] text-yellow-500 sm:text-[11px] md:text-sm md:tracking-[0.18em]">
                 GRAND EMPIRE
               </span>
             </Link>
 
-            <nav className="hidden items-center gap-8 text-xs uppercase tracking-[0.3em] text-gray-200 md:flex">
+            <nav className="hidden items-center gap-7 text-[11px] uppercase tracking-[0.26em] text-gray-200 md:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -70,12 +70,12 @@ export default function Navbar() {
               type="button"
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500 backdrop-blur-md md:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500 backdrop-blur-md md:hidden"
             >
               <span className="flex flex-col gap-1.5">
-                <span className="block h-0.5 w-5 bg-current" />
-                <span className="block h-0.5 w-5 bg-current" />
-                <span className="block h-0.5 w-5 bg-current" />
+                <span className="block h-0.5 w-4.5 bg-current" />
+                <span className="block h-0.5 w-4.5 bg-current" />
+                <span className="block h-0.5 w-4.5 bg-current" />
               </span>
             </button>
           </div>
@@ -94,17 +94,17 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <Link
                   href="/"
-                  className="flex min-w-0 items-center gap-2.5"
+                  className="flex min-w-0 items-center gap-2"
                   onClick={() => setMenuOpen(false)}
                 >
                   <Image
                     src="/logo6.png"
                     alt="Grand Empire"
-                    width={44}
-                    height={44}
-                    className="h-10 w-10 object-contain"
+                    width={40}
+                    height={40}
+                    className="h-9 w-9 object-contain"
                   />
-                  <span className="truncate text-xs font-semibold tracking-[0.18em] text-yellow-500">
+                  <span className="truncate text-[11px] font-semibold tracking-[0.16em] text-yellow-500">
                     GRAND EMPIRE
                   </span>
                 </Link>
@@ -113,7 +113,7 @@ export default function Navbar() {
                   type="button"
                   aria-label="Close menu"
                   onClick={() => setMenuOpen(false)}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-yellow-600/30 bg-black/40 text-yellow-500"
                 >
                   ✕
                 </button>
@@ -141,12 +141,12 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.28 }}
-                  className="pt-6"
+                  className="pt-4"
                 >
                   <Link
                     href="/reservation"
                     onClick={() => setMenuOpen(false)}
-                    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
+                    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-7 py-3.5 text-sm font-bold text-black transition hover:bg-yellow-500"
                   >
                     Reserve a Table
                   </Link>

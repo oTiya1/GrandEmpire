@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MessageCircle } from "lucide-react";
 
 import EditorialSection from "@/components/EditorialSection";
 import FeaturedDishesLuxury from "@/components/FeaturedDishesLuxury";
@@ -14,7 +15,7 @@ export default function Home() {
 
       {/* HERO */}
 {/* HERO */}
-<section className="relative min-h-screen overflow-hidden pt-28 md:pt-32 lg:pt-36">
+<section className="relative min-h-screen overflow-hidden pt-20 md:pt-24 lg:pt-28">
   <video
     autoPlay
     muted
@@ -24,7 +25,7 @@ export default function Home() {
     aria-hidden="true"
     className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
   >
-    <source src="/hero-video.mp4" type="video/mp4" />
+    <source src="/hero-video1.mp4" type="video/mp4" />
   </video>
 
   <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-center px-6">
@@ -193,7 +194,7 @@ export default function Home() {
 <div className="pt-4 flex flex-col sm:flex-row gap-4">
   <Link
     href="/reservation"
-    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 text-sm font-semibold text-black transition hover:bg-yellow-500"
+    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 text-sm font-semibold text-black transition duration-300 hover:scale-[1.03] hover:bg-yellow-500"
   >
     Book A Table
   </Link>
@@ -202,10 +203,12 @@ export default function Home() {
     href="https://wa.me/447413491088?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center justify-center rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition hover:bg-green-600"
+    className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03] hover:bg-green-600"
   >
+    <MessageCircle className="h-5 w-5" />
     WhatsApp Us
   </a>
+
           </div>
         </div>
       </div>

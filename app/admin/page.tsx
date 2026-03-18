@@ -168,25 +168,6 @@ export default async function AdminPage() {
                       </td>
 
                       <td className="px-6 py-5">
-                        <div className="flex flex-wrap gap-2">
-                          <form
-                            action={`/api/reservations/${r.id}/confirm`}
-                            method="POST"
-                          >
-                            <button className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:brightness-110">
-                              Confirm
-                            </button>
-                          </form>
-
-                          <form
-                            action={`/api/reservations/${r.id}/cancel`}
-                            method="POST"
-                          >
-                            <button className="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:brightness-110">
-                              Cancel
-                            </button>
-                          </form>
-                        </div>
                       </td>
                     </tr>
                   ))
