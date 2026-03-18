@@ -63,7 +63,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 text-sm text-gray-300 sm:flex-row sm:gap-8">
+        <div className="mt-20 flex flex-col items-center gap-3 rounded-2xl bg-black/35 px-5 py-4 text-sm text-gray-200 backdrop-blur-sm sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
           <span>Open Daily: 8:00 AM – 3:00 AM</span>
           <span>108–110 Rushey Green, London</span>
         </div>
@@ -199,15 +199,22 @@ export default function Home() {
     Book A Table
   </Link>
 
-  <a
-    href="https://wa.me/447413491088?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03] hover:bg-green-600"
+<a
+  href="https://wa.me/447000000000?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03] hover:bg-green-600"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    className="h-5 w-5 fill-current"
+    aria-hidden="true"
   >
-    <MessageCircle className="h-5 w-5" />
-    WhatsApp Us
-  </a>
+    <path d="M19.11 4.93A9.77 9.77 0 0 0 12.05 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.26-1.38A9.93 9.93 0 0 0 12.05 22C17.55 22 22 17.57 22 12.1a9.82 9.82 0 0 0-2.89-7.17ZM12.05 20.3a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.97 3.85Zm4.5-6.15c-.25-.12-1.5-.73-1.73-.81-.23-.09-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.19-.55.06-.25-.12-1.04-.38-1.99-1.2-.74-.66-1.24-1.48-1.39-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.28.37-.42.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.35.99 2.51.12.16 1.7 2.58 4.12 3.62.58.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.5-.61 1.71-1.2.21-.59.21-1.09.15-1.2-.06-.11-.23-.17-.48-.3Z" />
+  </svg>
+  WhatsApp Us
+</a>
 
           </div>
         </div>

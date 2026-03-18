@@ -60,121 +60,164 @@ export default async function AdminPage() {
   ).length;
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.14),_transparent_30%),linear-gradient(to_bottom,_#050505,_#0d0d0d,_#111111)] text-white px-6 py-8 md:px-10">
-      <div className="mx-auto max-w-7xl space-y-8">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.14),_transparent_30%),linear-gradient(to_bottom,_#050505,_#0d0d0d,_#111111)] px-4 py-6 text-white sm:px-6 md:px-10 md:py-8">
+      <div className="mx-auto max-w-7xl space-y-6 md:space-y-8">
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.35em] text-[#D4AF37] mb-2">
-
-            </p>
-            <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">
+            <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
               Reservations Dashboard
             </h1>
-            <p className="mt-3 max-w-2xl text-sm md:text-base text-white/60">
+            <p className="mt-3 max-w-2xl text-sm text-white/60 md:text-base">
               Monitor bookings, confirm guest arrivals, and manage the dining
               schedule from one refined control center.
             </p>
           </div>
         </header>
 
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+        <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:p-6">
             <p className="text-sm text-white/55">Today&apos;s Reservations</p>
-            <h2 className="mt-3 text-4xl font-semibold text-[#D4AF37]">
+            <h2 className="mt-3 text-3xl font-semibold text-[#D4AF37] md:text-4xl">
               {todaysReservations.length}
             </h2>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:p-6">
             <p className="text-sm text-white/55">Confirmed</p>
-            <h2 className="mt-3 text-4xl font-semibold">{confirmedCount}</h2>
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              {confirmedCount}
+            </h2>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:p-6">
             <p className="text-sm text-white/55">Pending</p>
-            <h2 className="mt-3 text-4xl font-semibold">{pendingCount}</h2>
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              {pendingCount}
+            </h2>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:p-6">
             <p className="text-sm text-white/55">Cancelled</p>
-            <h2 className="mt-3 text-4xl font-semibold">{cancelledCount}</h2>
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              {cancelledCount}
+            </h2>
           </div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
-          <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+        <section className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+          <div className="border-b border-white/10 px-5 py-5 md:px-6">
             <div>
               <h2 className="text-xl font-semibold">All Reservations</h2>
-              <p className="text-sm text-white/50 mt-1">
+              <p className="mt-1 text-sm text-white/50">
                 A complete overview of current guest bookings.
               </p>
             </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[900px]">
-              <thead className="bg-white/5">
-                <tr className="text-left text-sm text-white/55">
-                  <th className="px-6 py-4 font-medium">Guest</th>
-                  <th className="px-6 py-4 font-medium">Guests</th>
-                  <th className="px-6 py-4 font-medium">Table</th>
-                  <th className="px-6 py-4 font-medium">Date & Time</th>
-                  <th className="px-6 py-4 font-medium">Status</th>
-                  <th className="px-6 py-4 font-medium">Actions</th>
-                </tr>
-              </thead>
+          {reservations.length === 0 ? (
+            <div className="px-6 py-16 text-center text-white/45">
+              No reservations found yet.
+            </div>
+          ) : (
+            <>
+              {/* Mobile cards */}
+              <div className="grid gap-4 p-4 md:hidden">
+                {reservations.map((r) => (
+                  <div
+                    key={r.id}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] p-4"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-medium text-white">{r.name}</p>
+                        <p className="mt-1 break-all text-sm text-white/45">
+                          {r.email}
+                        </p>
+                      </div>
 
-              <tbody>
-                {reservations.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={6}
-                      className="px-6 py-16 text-center text-white/45"
-                    >
-                      No reservations found yet.
-                    </td>
-                  </tr>
-                ) : (
-                  reservations.map((r) => (
-                    <tr
-                      key={r.id}
-                      className="border-t border-white/10 hover:bg-white/[0.03] transition"
-                    >
-                      <td className="px-6 py-5">
-                        <div className="space-y-1">
-                          <p className="font-medium text-white">{r.name}</p>
-                          <p className="text-sm text-white/45">{r.email}</p>
-                        </div>
-                      </td>
+                      <span
+                        className={`inline-flex rounded-full px-3 py-1 text-[11px] font-medium capitalize ${getStatusClasses(
+                          r.status
+                        )}`}
+                      >
+                        {r.status}
+                      </span>
+                    </div>
 
-                      <td className="px-6 py-5 text-white/80">{r.guests}</td>
+                    <div className="mt-4 grid gap-3 text-sm text-white/75">
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-white/45">Guests</span>
+                        <span>{r.guests}</span>
+                      </div>
 
-                      <td className="px-6 py-5 text-white/80">
-                        Table {r.table.tableNumber}
-                      </td>
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-white/45">Table</span>
+                        <span>Table {r.table.tableNumber}</span>
+                      </div>
 
-                      <td className="px-6 py-5 text-white/70">
-                        {formatDateTime(r.startTime)}
-                      </td>
-
-                      <td className="px-6 py-5">
-                        <span
-                          className={`inline-flex rounded-full px-3 py-1 text-xs font-medium capitalize ${getStatusClasses(
-                            r.status
-                          )}`}
-                        >
-                          {r.status}
+                      <div className="flex items-start justify-between gap-4">
+                        <span className="text-white/45">Date & Time</span>
+                        <span className="max-w-[60%] text-right">
+                          {formatDateTime(r.startTime)}
                         </span>
-                      </td>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-                      <td className="px-6 py-5">
-                      </td>
+              {/* Desktop table */}
+              <div className="hidden overflow-x-auto md:block">
+                <table className="w-full min-w-[780px]">
+                  <thead className="bg-white/5">
+                    <tr className="text-left text-sm text-white/55">
+                      <th className="px-6 py-4 font-medium">Guest</th>
+                      <th className="px-6 py-4 font-medium">Guests</th>
+                      <th className="px-6 py-4 font-medium">Table</th>
+                      <th className="px-6 py-4 font-medium">Date & Time</th>
+                      <th className="px-6 py-4 font-medium">Status</th>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                  </thead>
+
+                  <tbody>
+                    {reservations.map((r) => (
+                      <tr
+                        key={r.id}
+                        className="border-t border-white/10 transition hover:bg-white/[0.03]"
+                      >
+                        <td className="px-6 py-5">
+                          <div className="space-y-1">
+                            <p className="font-medium text-white">{r.name}</p>
+                            <p className="text-sm text-white/45">{r.email}</p>
+                          </div>
+                        </td>
+
+                        <td className="px-6 py-5 text-white/80">{r.guests}</td>
+
+                        <td className="px-6 py-5 text-white/80">
+                          Table {r.table.tableNumber}
+                        </td>
+
+                        <td className="px-6 py-5 text-white/70">
+                          {formatDateTime(r.startTime)}
+                        </td>
+
+                        <td className="px-6 py-5">
+                          <span
+                            className={`inline-flex rounded-full px-3 py-1 text-xs font-medium capitalize ${getStatusClasses(
+                              r.status
+                            )}`}
+                          >
+                            {r.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
         </section>
       </div>
     </main>

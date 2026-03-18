@@ -44,7 +44,6 @@ export default function ReservePage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden px-6 pt-24 pb-24 md:pt-28">
-
         <div className="absolute inset-0">
           <div className="grid h-full grid-cols-2 md:grid-cols-4">
 
