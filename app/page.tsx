@@ -14,7 +14,7 @@ export default function Home() {
 
       {/* HERO */}
 {/* HERO */}
-<section className="relative min-h-screen overflow-hidden pt-20 md:pt-24 lg:pt-38">
+<section className="relative min-h-screen overflow-hidden pt-28 md:pt-32 lg:pt-36">
   <video
     autoPlay
     muted
@@ -182,26 +182,27 @@ export default function Home() {
           </div>
 
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
-              Reservations
-            </p>
-            <p className="mt-3 text-lg leading-8 text-gray-300">
-              Reserve your table online for a smooth and elegant dining experience or contact us directly on WhatsApp.
-            </p>
-          </div>
+  <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
+    Reservations
+  </p>
+  <p className="mt-3 text-lg leading-8 text-gray-300">
+    Reserve your table online for a smooth and elegant dining experience or contact us directly on WhatsApp.
+  </p>
+</div>
 
-          <div className="pt-2">
-            <Link
-              href="/reservation"
-              className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
-            >
-              Book A Table
-            </Link>
-            <a
-    href="https://wa.me/447000000000?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
+<div className="pt-4 flex flex-col sm:flex-row gap-4">
+  <Link
+    href="/reservation"
+    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 text-sm font-semibold text-black transition hover:bg-yellow-500"
+  >
+    Book A Table
+  </Link>
+
+  <a
+    href="https://wa.me/447413491088?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-green-500 px-6 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] hover:bg-green-600"
+    className="inline-flex items-center justify-center rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition hover:bg-green-600"
   >
     WhatsApp Us
   </a>
