@@ -130,15 +130,11 @@ const menuSections = [
   },
 ];
 
-function sectionId(title: string) {
-  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-}
-
 export default function MenuPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black text-white">
-      {/* HERO */}
-      <section className="relative min-h-[60vh] overflow-hidden md:min-h-[70vh]">
+    <main className="bg-black text-white">
+      {/* HERO WITH BACKGROUND IMAGE */}
+      <section className="relative min-h-[70vh] overflow-hidden">
         <Image
           src="/gallery4.jpg"
           alt="Grand Empire menu background"
@@ -147,36 +143,36 @@ export default function MenuPage() {
           className="object-cover object-center"
         />
 
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/70" />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/52 to-black/65" />
 
-        <div className="relative z-10 mx-auto flex min-h-[60vh] max-w-7xl items-center px-4 pb-12 pt-20 sm:px-6 md:min-h-[70vh] md:pb-16 md:pt-24">
+        <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-7xl items-center px-6 pt-24 pb-16">
           <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-yellow-500 sm:text-sm sm:tracking-[0.35em]">
+            <p className="text-sm uppercase tracking-[0.35em] text-yellow-500">
               Explore
             </p>
 
-            <h1 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl">
+            <h1 className="mt-4 text-5xl font-semibold leading-tight text-white md:text-6xl">
               Our Current
               <span className="block text-yellow-500">Restaurant Menu</span>
             </h1>
 
-            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300">
               Explore Grand Empire’s current selection of starters, burgers,
               wraps, seafood, rice dishes, soups, fish dishes, desserts and more.
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/reservation"
-                className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-7 py-3.5 text-sm font-bold text-black transition hover:bg-yellow-500 sm:px-8 sm:py-4"
+                className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
               >
                 Reserve a Table
               </Link>
 
               <Link
                 href="/"
-                className="inline-flex items-center justify-center rounded-full border border-yellow-600/40 px-7 py-3.5 text-sm text-yellow-500 transition hover:bg-yellow-600 hover:text-black sm:px-8 sm:py-4"
+                className="inline-flex items-center justify-center rounded-full border border-yellow-600/40 px-8 py-4 text-yellow-500 transition hover:bg-yellow-600 hover:text-black"
               >
                 Back Home
               </Link>
@@ -186,13 +182,13 @@ export default function MenuPage() {
       </section>
 
       {/* CATEGORY STRIP */}
-      <section className="sticky top-[56px] z-30 border-b border-yellow-600/10 bg-black/90 px-4 py-3 backdrop-blur-xl sm:px-6 md:top-[64px]">
-        <div className="mx-auto flex max-w-7xl gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <section className="sticky top-[72px] z-30 border-b border-yellow-600/10 bg-black/85 px-6 py-4 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl gap-3 overflow-x-auto">
           {menuSections.map((section) => (
             <a
               key={section.title}
-              href={`#${sectionId(section.title)}`}
-              className="whitespace-nowrap rounded-full border border-yellow-600/25 px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-gray-200 transition hover:bg-yellow-600 hover:text-black sm:px-5 sm:text-sm sm:tracking-[0.2em]"
+              href={`#${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              className="whitespace-nowrap rounded-full border border-yellow-600/25 px-5 py-2 text-sm uppercase tracking-[0.2em] text-gray-200 transition hover:bg-yellow-600 hover:text-black"
             >
               {section.title}
             </a>
@@ -201,51 +197,31 @@ export default function MenuPage() {
       </section>
 
       {/* MENU SECTIONS */}
-      <section className="px-4 py-12 sm:px-6 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-7xl space-y-14 sm:space-y-16 md:space-y-20">
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-7xl space-y-20">
           {menuSections.map((section, sectionIndex) => (
             <div
               key={section.title}
-              id={sectionId(section.title)}
-              className="scroll-mt-28 md:scroll-mt-36"
+              id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+              className="scroll-mt-36"
             >
-              <div className="mb-8 sm:mb-10">
-                <p className="text-xs uppercase tracking-[0.3em] text-yellow-500 sm:text-sm sm:tracking-[0.35em]">
+              <div className="mb-10">
+                <p className="text-sm uppercase tracking-[0.35em] text-yellow-500">
                   {sectionIndex + 1 < 10 ? `0${sectionIndex + 1}` : sectionIndex + 1}
                 </p>
-                <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+                <h2 className="mt-3 text-4xl font-semibold text-white md:text-5xl">
                   {section.title}
                 </h2>
               </div>
 
-              {/* MOBILE VIEW */}
-              <div className="space-y-4 md:hidden">
-                {section.items.map(([name, price]) => (
-                  <div
-                    key={name}
-                    className="rounded-2xl border border-yellow-600/15 bg-[#111]/95 p-4"
-                  >
-                    <div className="flex flex-col gap-3">
-                      <h3 className="text-base font-medium leading-7 text-yellow-500">
-                        {name}
-                      </h3>
-                      <span className="inline-flex w-fit rounded-full border border-yellow-600/25 px-3 py-1 text-sm font-semibold text-white">
-                        {price}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* DESKTOP VIEW */}
-              <div className="hidden grid-cols-2 gap-6 md:grid xl:grid-cols-3">
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {section.items.map(([name, price]) => (
                   <div
                     key={name}
                     className="rounded-3xl border border-yellow-600/15 bg-[#111]/95 p-7 transition duration-300 hover:-translate-y-1 hover:border-yellow-500/35 hover:shadow-[0_0_30px_rgba(234,179,8,0.08)]"
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <h3 className="min-w-0 text-2xl font-medium leading-8 text-yellow-500">
+                      <h3 className="text-2xl font-medium text-yellow-500">
                         {name}
                       </h3>
                       <span className="shrink-0 rounded-full border border-yellow-600/25 px-4 py-1 text-sm font-semibold text-white">
@@ -261,25 +237,25 @@ export default function MenuPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-4 pb-20 sm:px-6 sm:pb-24">
-        <div className="mx-auto max-w-5xl rounded-[2rem] border border-yellow-600/15 bg-[#0d0d0d] px-5 py-12 text-center shadow-[0_0_50px_rgba(0,0,0,0.35)] sm:px-8 sm:py-14 md:px-14">
-          <p className="text-xs uppercase tracking-[0.3em] text-yellow-500 sm:text-sm sm:tracking-[0.35em]">
+      <section className="px-6 pb-24">
+        <div className="mx-auto max-w-5xl rounded-[2rem] border border-yellow-600/15 bg-[#0d0d0d] px-8 py-14 text-center shadow-[0_0_50px_rgba(0,0,0,0.35)] md:px-14">
+          <p className="text-sm uppercase tracking-[0.35em] text-yellow-500">
             Grand Empire Experience
           </p>
 
-          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+          <h2 className="mt-4 text-4xl font-semibold text-white md:text-5xl">
             Elegant dining, bold flavour, memorable nights
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">
             Reserve your table and enjoy Grand Empire’s current menu in a warm,
             stylish, and unforgettable setting in South London.
           </p>
 
-          <div className="mt-8 sm:mt-10">
+          <div className="mt-10">
             <Link
               href="/reservation"
-              className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-3.5 text-sm font-bold text-black transition hover:bg-yellow-500 sm:px-10 sm:py-4"
+              className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-10 py-4 font-bold text-black transition hover:bg-yellow-500"
             >
               Book Your Table
             </Link>

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
 
 import EditorialSection from "@/components/EditorialSection";
 import FeaturedDishesLuxury from "@/components/FeaturedDishesLuxury";
@@ -11,78 +10,131 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="overflow-x-hidden bg-black text-white">
+      {/* MOBILE HERO */}
+      <section className="relative min-h-[92vh] overflow-hidden md:hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          tabIndex={-1}
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
 
-      {/* HERO */}
-{/* HERO */}
-<section className="relative min-h-screen overflow-hidden pt-20 md:pt-24 lg:pt-28">
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    tabIndex={-1}
-    aria-hidden="true"
-    className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
-  >
-    <source src="/hero-video.mp4" type="video/mp4" />
-  </video>
+        <div className="absolute inset-0 bg-black/30" />
 
-  <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-center px-6">
-    <div className="grid w-full items-center gap-12 lg:grid-cols-2">
-      {/* HERO TEXT */}
-      <div className="hero-animate relative z-30 pointer-events-auto flex flex-col items-center text-center lg:items-start lg:text-left">
-        <p className="mb-5 text-xs uppercase tracking-[0.35em] text-yellow-500 md:text-sm">
-          Luxury Dining • South London
-        </p>
+        <div className="relative z-10 flex min-h-[92vh] items-center px-5 pb-10 pt-20">
+          <div className="w-full text-center">
+            <p className="mb-4 text-[11px] uppercase tracking-[0.3em] text-yellow-500">
+              Luxury Dining • South London
+            </p>
 
-        <h1 className="text-5xl font-light leading-[1.05] text-yellow-500 md:text-7xl">
-          Fine Dining
-          <span className="block text-white">Reimagined</span>
-        </h1>
+            <h1 className="text-4xl font-light leading-[1.05] text-yellow-500">
+              Fine Dining
+              <span className="block text-white">Reimagined</span>
+            </h1>
 
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-200">
-          Grand Empire blends gourmet burgers, authentic Nigerian classics,
-          and elegant intercontinental cuisine into one refined dining
-          experience in London.
-        </p>
+            <p className="mx-auto mt-5 max-w-md text-base leading-7 text-gray-200">
+              Grand Empire blends gourmet burgers, authentic Nigerian classics,
+              and elegant intercontinental cuisine into one refined dining
+              experience in London.
+            </p>
 
-        <div className="relative z-40 mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-          <Link
-            href="/reservation"
-            className="pointer-events-auto inline-flex min-w-[220px] items-center justify-center rounded-full bg-yellow-600 px-8 py-4 font-bold text-black shadow-[0_0_30px_rgba(234,179,8,0.35)] transition hover:bg-yellow-500"
-          >
-            Imperial Standard
-          </Link>
+            <div className="mt-8 flex flex-col gap-3">
+              <Link
+                href="/reservation"
+                className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-7 py-3.5 text-sm font-bold text-black shadow-[0_0_30px_rgba(234,179,8,0.35)] transition hover:bg-yellow-500"
+              >
+                Imperial Standard
+              </Link>
 
-          <Link
-            href="/menu"
-            className="pointer-events-auto inline-flex min-w-[220px] items-center justify-center rounded-full border border-yellow-600/40 px-8 py-4 text-yellow-500 backdrop-blur-md transition hover:bg-yellow-600 hover:text-black"
-          >
-            Exquisite Flavours
-          </Link>
+              <Link
+                href="/menu"
+                className="inline-flex items-center justify-center rounded-full border border-yellow-600/40 px-7 py-3.5 text-sm text-yellow-500 backdrop-blur-md transition hover:bg-yellow-600 hover:text-black"
+              >
+                Exquisite Flavours
+              </Link>
+            </div>
+
+            <div className="mt-8 flex flex-col items-center gap-2 rounded-2xl bg-black/35 px-4 py-4 text-sm text-gray-200 backdrop-blur-sm">
+              <span>Open Daily: 8:00 AM – 3:00 AM</span>
+              <span>108–110 Rushey Green, London</span>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-12 flex flex-col items-center gap-2 rounded-2xl bg-black/35 px-5 py-4 text-sm text-gray-200 backdrop-blur-sm sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
-          <span>Open Daily: 8:00 AM – 3:00 AM</span>
-          <span>108–110 Rushey Green, London</span>
+      {/* DESKTOP HERO */}
+      <section className="relative hidden min-h-screen overflow-hidden pt-20 md:block md:pt-24 lg:pt-28">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          tabIndex={-1}
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-center px-6">
+          <div className="grid w-full items-center gap-12 lg:grid-cols-2">
+            <div className="hero-animate relative z-30 pointer-events-auto flex flex-col items-center text-center lg:items-start lg:text-left">
+              <p className="mb-5 text-xs uppercase tracking-[0.35em] text-yellow-500 md:text-sm">
+                Luxury Dining • South London
+              </p>
+
+              <h1 className="text-5xl font-light leading-[1.05] text-yellow-500 md:text-7xl">
+                Fine Dining
+                <span className="block text-white">Reimagined</span>
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-200">
+                Grand Empire blends gourmet burgers, authentic Nigerian classics,
+                and elegant intercontinental cuisine into one refined dining
+                experience in London.
+              </p>
+
+              <div className="relative z-40 mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
+                <Link
+                  href="/reservation"
+                  className="pointer-events-auto inline-flex min-w-[220px] items-center justify-center rounded-full bg-yellow-600 px-8 py-4 font-bold text-black shadow-[0_0_30px_rgba(234,179,8,0.35)] transition hover:bg-yellow-500"
+                >
+                  Imperial Standard
+                </Link>
+
+                <Link
+                  href="/menu"
+                  className="pointer-events-auto inline-flex min-w-[220px] items-center justify-center rounded-full border border-yellow-600/40 px-8 py-4 text-yellow-500 backdrop-blur-md transition hover:bg-yellow-600 hover:text-black"
+                >
+                  Exquisite Flavours
+                </Link>
+              </div>
+
+              <div className="mt-12 flex flex-col items-center gap-3 rounded-2xl bg-black/35 px-5 py-4 text-sm text-gray-200 backdrop-blur-sm sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
+                <span>Open Daily: 8:00 AM – 3:00 AM</span>
+                <span>108–110 Rushey Green, London</span>
+              </div>
+            </div>
+
+            <div className="pointer-events-none hidden justify-center lg:flex lg:justify-end">
+              <Image
+                src="/logo6.png"
+                alt="Grand Empire"
+                width={520}
+                height={520}
+                priority
+                className="logo-glow h-auto w-[340px] lg:w-[420px]"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* HERO LOGO */}
-      <div className="pointer-events-none flex justify-center lg:justify-end">
-        <Image
-          src="/logo6.png"
-          alt="Grand Empire"
-          width={520}
-          height={520}
-          priority
-          className="logo-glow h-auto w-[260px] md:w-[340px] lg:w-[420px]"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* EDITORIAL STORY SECTION */}
       <EditorialSection
@@ -92,10 +144,8 @@ export default function Home() {
         text="At Grand Empire, every visit is designed to feel memorable. From rich Nigerian classics to premium burgers and elegant intercontinental plates, we bring together bold taste, beautiful presentation, and a warm upscale atmosphere."
       />
 
-
       {/* FEATURED DISHES */}
       <FeaturedDishesLuxury />
-
 
       {/* SECOND EDITORIAL SECTION */}
       <EditorialSection
@@ -106,7 +156,6 @@ export default function Home() {
         reverse
       />
 
-
       {/* PARALLAX EXPERIENCE */}
       <ParallaxSection
         image="/dish4.jpg"
@@ -114,127 +163,207 @@ export default function Home() {
         text="Every plate at Grand Empire is designed to deliver elegance, flavour, and a memorable fine-dining experience from the first glance to the final bite."
       />
 
-
       {/* SIGNATURE SPOTLIGHT */}
       <SignatureSpotlight />
 
-
       {/* GALLERY */}
-      <section className="px-6 py-24">
+      <section className="px-4 py-16 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-7xl">
-
-          <div className="mb-14 text-center">
-
-            <p className="text-sm uppercase tracking-[0.35em] text-yellow-500">
+          <div className="mb-10 text-center sm:mb-14">
+            <p className="text-xs uppercase tracking-[0.3em] text-yellow-500 sm:text-sm sm:tracking-[0.35em]">
               Gallery
             </p>
 
-            <h2 className="mt-4 text-4xl md:text-5xl font-semibold text-white">
+            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
               Inside the Grand Empire experience
             </h2>
-
           </div>
 
           <GalleryLightbox />
-
         </div>
       </section>
 
-
-      {/* LOCATION */}
-<section className="px-6 py-24 bg-[#0a0a0a]">
-  <div className="mx-auto max-w-7xl">
-    <div className="mb-14 text-center">
-      <p className="text-sm uppercase tracking-[0.35em] text-yellow-500">
-        Visit Us
-      </p>
-      <h2 className="mt-4 text-4xl md:text-5xl font-semibold text-white">
-        Join us in South London
-      </h2>
-      <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">
-        Experience Grand Empire in a warm, stylish setting designed for intimate
-        dinners, celebrations, and memorable late-night dining.
-      </p>
-    </div>
-
-    <div className="grid gap-8 lg:grid-cols-[0.95fr_1.35fr]">
-      <div className="rounded-3xl border border-yellow-600/20 bg-[#111] p-8 md:p-10 shadow-[0_0_40px_rgba(0,0,0,0.35)]">
-        <div className="space-y-8">
-          <div>
+      {/* MOBILE VISIT US */}
+      <section className="bg-[#0a0a0a] px-4 py-16 sm:px-6 md:hidden">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10 text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
-              Address
+              Visit Us
             </p>
-            <p className="mt-3 text-lg leading-8 text-gray-300">
-              108–110 Rushey Green
-              <br />
-              London, SE6 4HW
+            <h2 className="mt-4 text-3xl font-semibold text-white">
+              Join us in South London
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-gray-300">
+              Experience Grand Empire in a warm, stylish setting designed for
+              intimate dinners, celebrations, and memorable late-night dining.
             </p>
           </div>
 
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
-              Opening Hours
-            </p>
-            <p className="mt-3 text-lg leading-8 text-gray-300">
-              Open Daily
-              <br />
-              8:00 AM – 3:00 AM
-            </p>
-          </div>
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-yellow-600/20 bg-[#111] p-6 shadow-[0_0_40px_rgba(0,0,0,0.35)]">
+              <div className="space-y-7">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-yellow-500">
+                    Address
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-gray-300">
+                    108–110 Rushey Green
+                    <br />
+                    London, SE6 4HW
+                  </p>
+                </div>
 
-          <div>
-  <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
-    Reservations
-  </p>
-  <p className="mt-3 text-lg leading-8 text-gray-300">
-    Reserve your table online for a smooth and elegant dining experience or contact us directly on WhatsApp.
-  </p>
-</div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-yellow-500">
+                    Opening Hours
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-gray-300">
+                    Open Daily
+                    <br />
+                    8:00 AM – 3:00 AM
+                  </p>
+                </div>
 
-<div className="pt-4 flex flex-col sm:flex-row gap-4">
-  <Link
-    href="/reservation"
-    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 text-sm font-semibold text-black transition duration-300 hover:scale-[1.03] hover:bg-yellow-500"
-  >
-    Book A Table
-  </Link>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-yellow-500">
+                    Reservations
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-gray-300">
+                    Reserve your table online for a smooth and elegant dining
+                    experience or contact us directly on WhatsApp.
+                  </p>
+                </div>
 
-<a
-  href="https://wa.me/447000000000?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03] hover:bg-green-600"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    className="h-5 w-5 fill-current"
-    aria-hidden="true"
-  >
-    <path d="M19.11 4.93A9.77 9.77 0 0 0 12.05 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.26-1.38A9.93 9.93 0 0 0 12.05 22C17.55 22 22 17.57 22 12.1a9.82 9.82 0 0 0-2.89-7.17ZM12.05 20.3a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.97 3.85Zm4.5-6.15c-.25-.12-1.5-.73-1.73-.81-.23-.09-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.19-.55.06-.25-.12-1.04-.38-1.99-1.2-.74-.66-1.24-1.48-1.39-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.28.37-.42.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.35.99 2.51.12.16 1.7 2.58 4.12 3.62.58.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.5-.61 1.71-1.2.21-.59.21-1.09.15-1.2-.06-.11-.23-.17-.48-.3Z" />
-  </svg>
-  WhatsApp Us
-</a>
+                <div className="flex flex-col gap-3 pt-2">
+                  <Link
+                    href="/reservation"
+                    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-[1.03] hover:bg-yellow-500"
+                  >
+                    Book A Table
+                  </Link>
 
+                  <a
+                    href="https://wa.me/447000000000?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03] hover:bg-green-600"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5 fill-current"
+                      aria-hidden="true"
+                    >
+                      <path d="M19.11 4.93A9.77 9.77 0 0 0 12.05 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.26-1.38A9.93 9.93 0 0 0 12.05 22C17.55 22 22 17.57 22 12.1a9.82 9.82 0 0 0-2.89-7.17ZM12.05 20.3a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.97 3.85Zm4.5-6.15c-.25-.12-1.5-.73-1.73-.81-.23-.09-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.19-.55.06-.25-.12-1.04-.38-1.99-1.2-.74-.66-1.24-1.48-1.39-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.28.37-.42.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.35.99 2.51.12.16 1.7 2.58 4.12 3.62.58.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.5-.61 1.71-1.2.21-.59.21-1.09.15-1.2-.06-.11-.23-.17-.48-.3Z" />
+                    </svg>
+                    WhatsApp Us
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-yellow-600/20 shadow-[0_0_40px_rgba(0,0,0,0.35)]">
+              <iframe
+                src="https://www.google.com/maps?q=108-110+Rushey+Green,+London,+SE6+4HW&output=embed"
+                className="h-[320px] w-full"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="overflow-hidden rounded-3xl border border-yellow-600/20 shadow-[0_0_40px_rgba(0,0,0,0.35)]">
-        <iframe
-          src="https://www.google.com/maps?q=108-110+Rushey+Green,+London,+SE6+4HW&output=embed"
-          className="h-[420px] md:h-[520px] w-full"
-          loading="lazy"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+      {/* DESKTOP VISIT US */}
+      <section className="hidden bg-[#0a0a0a] px-6 py-24 md:block">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 text-center">
+            <p className="text-sm uppercase tracking-[0.35em] text-yellow-500">
+              Visit Us
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold text-white md:text-5xl">
+              Join us in South London
+            </h2>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">
+              Experience Grand Empire in a warm, stylish setting designed for
+              intimate dinners, celebrations, and memorable late-night dining.
+            </p>
+          </div>
 
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.35fr]">
+            <div className="rounded-3xl border border-yellow-600/20 bg-[#111] p-8 shadow-[0_0_40px_rgba(0,0,0,0.35)] md:p-10">
+              <div className="space-y-8">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
+                    Address
+                  </p>
+                  <p className="mt-3 text-lg leading-8 text-gray-300">
+                    108–110 Rushey Green
+                    <br />
+                    London, SE6 4HW
+                  </p>
+                </div>
 
-      {/* FOOTER */}
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
+                    Opening Hours
+                  </p>
+                  <p className="mt-3 text-lg leading-8 text-gray-300">
+                    Open Daily
+                    <br />
+                    8:00 AM – 3:00 AM
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-yellow-500">
+                    Reservations
+                  </p>
+                  <p className="mt-3 text-lg leading-8 text-gray-300">
+                    Reserve your table online for a smooth and elegant dining
+                    experience or contact us directly on WhatsApp.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-4 pt-4 sm:flex-row">
+                  <Link
+                    href="/reservation"
+                    className="inline-flex items-center justify-center rounded-full bg-yellow-600 px-8 py-4 text-sm font-semibold text-black transition duration-300 hover:scale-[1.03] hover:bg-yellow-500"
+                  >
+                    Book A Table
+                  </Link>
+
+                  <a
+                    href="https://wa.me/447000000000?text=Hello%20Grand%20Empire%2C%20I%20would%20like%20to%20make%20a%20booking."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03] hover:bg-green-600"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5 fill-current"
+                      aria-hidden="true"
+                    >
+                      <path d="M19.11 4.93A9.77 9.77 0 0 0 12.05 2a9.9 9.9 0 0 0-8.55 14.9L2 22l5.26-1.38A9.93 9.93 0 0 0 12.05 22C17.55 22 22 17.57 22 12.1a9.82 9.82 0 0 0-2.89-7.17ZM12.05 20.3a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.97 3.85Zm4.5-6.15c-.25-.12-1.5-.73-1.73-.81-.23-.09-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.19-.55.06-.25-.12-1.04-.38-1.99-1.2-.74-.66-1.24-1.48-1.39-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.28.37-.42.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.35.99 2.51.12.16 1.7 2.58 4.12 3.62.58.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.5-.61 1.71-1.2.21-.59.21-1.09.15-1.2-.06-.11-.23-.17-.48-.3Z" />
+                    </svg>
+                    WhatsApp Us
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-yellow-600/20 shadow-[0_0_40px_rgba(0,0,0,0.35)]">
+              <iframe
+                src="https://www.google.com/maps?q=108-110+Rushey+Green,+London,+SE6+4HW&output=embed"
+                className="h-[420px] w-full md:h-[520px]"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
-
     </main>
   );
 }
