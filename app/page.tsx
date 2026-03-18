@@ -25,7 +25,7 @@ export default function Home() {
     aria-hidden="true"
     className="absolute inset-0 h-full w-full object-cover hero-video-zoom pointer-events-none select-none"
   >
-    <source src="/hero-video1.mp4" type="video/mp4" />
+    <source src="/hero-video.mp4" type="video/mp4" />
   </video>
 
   <div className="relative z-10 mx-auto flex min-h-[calc(100vh-6rem)] max-w-7xl items-center px-6">
