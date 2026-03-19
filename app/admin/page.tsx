@@ -60,19 +60,24 @@ export default async function AdminPage() {
   ).length;
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.14),_transparent_30%),linear-gradient(to_bottom,_#050505,_#0d0d0d,_#111111)] px-4 py-6 text-white sm:px-6 md:px-10 md:py-8">
-      <div className="mx-auto max-w-7xl space-y-6 md:space-y-8">
-        <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
-              Reservations Dashboard
-            </h1>
-            <p className="mt-3 max-w-2xl text-sm text-white/60 md:text-base">
-              Monitor bookings, confirm guest arrivals, and manage the dining
-              schedule from one refined control center.
-            </p>
-          </div>
-        </header>
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.14),_transparent_30%),linear-gradient(to_bottom,_#050505,_#0d0d0d,_#111111)] px-4 pb-6 pt-28 text-white sm:px-6 md:px-10 md:pb-8 md:pt-32">
+  <div className="mx-auto max-w-7xl space-y-8 md:space-y-10">
+    <header className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div className="max-w-3xl">
+        <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-[#D4AF37]/80 md:mb-4">
+          Admin Control Center
+        </p>
+
+        <h1 className="text-4xl font-semibold tracking-[-0.03em] text-white md:text-6xl">
+          Reservations Dashboard
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 md:mt-5 md:text-base">
+          Monitor bookings, confirm guest arrivals, and manage the dining
+          schedule from one refined control center.
+        </p>
+      </div>
+    </header>
 
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_10px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl md:p-6">
@@ -130,9 +135,7 @@ export default async function AdminPage() {
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="font-medium text-white">{r.name}</p>
-                        <p className="mt-1 break-all text-sm text-white/45">
-                          {r.email}
-                        </p>
+                        <p className="mt-1 text-sm text-white/55">{r.phone}</p>
                       </div>
 
                       <span
@@ -188,7 +191,7 @@ export default async function AdminPage() {
                         <td className="px-6 py-5">
                           <div className="space-y-1">
                             <p className="font-medium text-white">{r.name}</p>
-                            <p className="text-sm text-white/45">{r.email}</p>
+                            <p className="mt-1 text-sm text-white/55">{r.phone}</p>
                           </div>
                         </td>
 
